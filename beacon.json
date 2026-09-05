@@ -1,7 +1,7 @@
 {
- "written": "2026-09-05T17:17:06+00:00",
- "guard_age_min": 0.7,
- "listener_age_min": 0.8,
+ "written": "2026-09-05T17:37:06+00:00",
+ "guard_age_min": 7.0,
+ "listener_age_min": 1.1,
  "tasks_total": 10,
  "tasks_not_ready": [],
  "pick_count": 5,
