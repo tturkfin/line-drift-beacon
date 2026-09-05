@@ -1,14 +1,16 @@
 {
- "written": "2026-09-04T22:57:08+00:00",
- "guard_age_min": 12.0,
- "listener_age_min": 1.1,
+ "written": "2026-09-05T10:24:21+00:00",
+ "guard_age_min": 684.0,
+ "listener_age_min": 0.3,
  "tasks_total": 10,
  "tasks_not_ready": [],
  "pick_count": 5,
- "on_ac": false,
+ "on_ac": true,
  "in_window": true,
- "problems": [],
+ "problems": [
+  "guard has not run in 11.4 hours"
+ ],
  "notes": [
-  "running on BATTERY - plug in before the window, or Windows will suspend the scheduled tasks once the standby drain budget runs out and nothing will run until you open the lid"
+  "picksheet last read 16.1 hours ago"
  ]
 }
