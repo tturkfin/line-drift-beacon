@@ -1,16 +1,14 @@
 {
- "written": "2026-09-06T09:51:02+00:00",
- "guard_age_min": 664.6,
- "listener_age_min": 0.5,
+ "written": "2026-09-06T10:08:45+00:00",
+ "guard_age_min": 16.7,
+ "listener_age_min": 0.1,
  "tasks_total": 10,
  "tasks_not_ready": [],
  "pick_count": 5,
  "on_ac": true,
  "in_window": false,
- "problems": [
-  "guard has not run in 11.1 hours"
- ],
+ "problems": [],
  "notes": [
-  "picksheet last read 23.4 hours ago"
+  "picksheet last read 23.7 hours ago"
  ]
 }
