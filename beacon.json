@@ -1,14 +1,17 @@
 {
- "written": "2026-09-08T00:57:09+00:00",
- "guard_age_min": 12.0,
- "listener_age_min": 12.1,
- "tasks_total": 10,
+ "written": "2026-09-08T17:06:09+00:00",
+ "guard_age_min": 63.3,
+ "listener_age_min": 2.3,
+ "tasks_total": 0,
  "tasks_not_ready": [],
  "pick_count": 5,
  "on_ac": false,
  "in_window": false,
- "problems": [],
+ "problems": [
+  "scheduled task(s) missing: LineDrift Listener, LineDrift Guard, LineDrift Odds Snapshot, LineDrift Friday Board, LineDrift Tuesday Lock Read, LineDrift Ping Friday, LineDrift Ping Saturday, LineDrift Listener Fast, LineDrift Guard Fast, LineDrift Beacon"
+ ],
  "notes": [
+  "guard last ran 63 min ago (expected within ~15)",
   "running on BATTERY - plug in before the window, or Windows will suspend the scheduled tasks once the standby drain budget runs out and nothing will run until you open the lid"
  ]
 }
