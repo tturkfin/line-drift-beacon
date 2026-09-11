@@ -1,13 +1,14 @@
 {
- "written": "2026-09-11T05:37:06+00:00",
- "guard_age_min": 21.3,
- "listener_age_min": 22.1,
- "tasks_total": 10,
+ "written": "2026-09-11T05:57:06+00:00",
+ "guard_age_min": 11.4,
+ "listener_age_min": 0.1,
+ "tasks_total": 9,
  "tasks_not_ready": [],
  "pick_count": 0,
  "on_ac": true,
  "in_window": false,
  "problems": [
+  "scheduled task(s) missing: LineDrift Listener Fast",
   "entry has 0 picks, expected 5"
  ],
  "notes": []
