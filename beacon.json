@@ -1,16 +1,15 @@
 {
- "written": "2026-09-11T04:27:23+00:00",
- "guard_age_min": 83.5,
- "listener_age_min": 0.5,
+ "written": "2026-09-11T04:37:17+00:00",
+ "guard_age_min": 7.9,
+ "listener_age_min": 10.4,
  "tasks_total": 10,
  "tasks_not_ready": [],
  "pick_count": 0,
- "on_ac": null,
+ "on_ac": true,
  "in_window": false,
  "problems": [
+  "picksheet last read 46 hours ago - the Splash session may have expired",
   "entry has 0 picks, expected 5"
  ],
- "notes": [
-  "guard last ran 84 min ago (expected within ~15)"
- ]
+ "notes": []
 }
