@@ -1,12 +1,14 @@
 {
- "written": "2026-09-12T14:57:07+00:00",
- "guard_age_min": 12.0,
+ "written": "2026-09-12T15:17:08+00:00",
+ "guard_age_min": 2.0,
  "listener_age_min": 0.1,
- "tasks_total": 10,
+ "tasks_total": 8,
  "tasks_not_ready": [],
  "pick_count": 5,
  "on_ac": true,
  "in_window": true,
- "problems": [],
+ "problems": [
+  "scheduled task(s) missing: LineDrift Guard, LineDrift Guard Fast"
+ ],
  "notes": []
 }
