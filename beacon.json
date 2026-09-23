@@ -1,14 +1,13 @@
 {
- "written": "2026-09-23T06:15:16+00:00",
- "guard_age_min": 313.1,
- "listener_age_min": 0.1,
+ "written": "2026-09-23T12:11:56+00:00",
+ "guard_age_min": 0.0,
+ "listener_age_min": 236.5,
  "tasks_total": 9,
  "tasks_not_ready": [],
  "pick_count": 0,
  "on_ac": false,
  "in_window": false,
  "problems": [
-  "guard has not run in 5.2 hours",
   "entry has 0 picks, expected 5"
  ],
  "notes": [
