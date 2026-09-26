@@ -1,9 +1,9 @@
 {
- "written": "2026-09-26T02:17:12+00:00",
- "guard_age_min": 15.0,
- "guard_done_min": 0.2,
+ "written": "2026-09-26T02:57:11+00:00",
+ "guard_age_min": 10.0,
+ "guard_done_min": 10.1,
  "listener_age_min": 0.2,
- "listener_done_min": 0.1,
+ "listener_done_min": 0.2,
  "tasks_total": 9,
  "tasks_not_ready": [],
  "pick_count": 5,
