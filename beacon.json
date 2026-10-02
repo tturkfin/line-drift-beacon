@@ -1,7 +1,7 @@
 {
- "written": "2026-10-02T06:17:04+00:00",
- "guard_age_min": 0.0,
- "guard_done_min": 0.0,
+ "written": "2026-10-02T07:34:51+00:00",
+ "guard_age_min": 62.8,
+ "guard_done_min": 0.1,
  "listener_age_min": 0.1,
  "listener_done_min": 0.1,
  "tasks_total": 9,
@@ -10,5 +10,7 @@
  "on_ac": true,
  "in_window": false,
  "problems": [],
- "notes": []
+ "notes": [
+  "guard last ran 63 min ago (expected within ~15)"
+ ]
 }
