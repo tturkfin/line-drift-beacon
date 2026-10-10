@@ -1,7 +1,7 @@
 {
- "written": "2026-10-10T11:37:12+00:00",
- "guard_age_min": 4.4,
- "guard_done_min": 4.6,
+ "written": "2026-10-10T12:17:15+00:00",
+ "guard_age_min": 14.4,
+ "guard_done_min": 14.6,
  "listener_age_min": 0.2,
  "listener_done_min": 0.2,
  "tasks_total": 9,
@@ -10,7 +10,7 @@
  "on_ac": false,
  "in_window": true,
  "problems": [
-  "picksheet last read 187 hours ago - the Splash session may have expired"
+  "picksheet last read 188 hours ago - the Splash session may have expired"
  ],
  "notes": [
   "running on BATTERY - plug in before the window, or Windows will suspend the scheduled tasks once the standby drain budget runs out and nothing will run until you open the lid"
