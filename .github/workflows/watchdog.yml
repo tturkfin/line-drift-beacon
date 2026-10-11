@@ -14,6 +14,11 @@ on:
   schedule:
     - cron: '*/30 * * * *'
   workflow_dispatch:
+    inputs:
+      test:
+        description: 'Send a test Telegram even if nothing is wrong'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -28,6 +33,7 @@ jobs:
         env:
           TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TEST: ${{ inputs.test }}
         run: |
           python3 - <<'PY'
           import json, os, pathlib, urllib.parse, urllib.request
@@ -63,8 +69,17 @@ jobs:
           except Exception as e:
               problems.append(f"Could not even read the beacon file: {e}")
 
+          # A green run proves the workflow executes. It does NOT prove the
+          # Telegram credentials work, because a healthy beacon never sends.
+          # The test toggle forces one message so the whole chain is provable
+          # without waiting for a real outage.
+          test = os.environ.get("TEST", "false").strip().lower() == "true"
           if not problems:
-              print("healthy"); raise SystemExit
+              if not test:
+                  print("healthy"); raise SystemExit
+              problems = ["This is a TEST. Nothing is actually wrong - you ran "
+                          "the workflow with the test box ticked, to prove these "
+                          "messages reach you."]
 
           sig = "|".join(sorted(problems))
           try:
@@ -96,8 +111,11 @@ jobs:
           with urllib.request.urlopen(req, timeout=30) as r:
               print("telegram:", r.status)
 
-          STATE.write_text(json.dumps({"sig": sig, "at": now.isoformat()}, indent=1))
-          print("alerted")
+          # A test must never write the dedupe marker: that would silence the
+          # next real alarm for six hours.
+          if not test:
+              STATE.write_text(json.dumps({"sig": sig, "at": now.isoformat()}, indent=1))
+          print("alerted (test)" if test else "alerted")
           PY
 
       - name: Remember what we said, so it is not repeated every 30 minutes
