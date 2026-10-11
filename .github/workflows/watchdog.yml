@@ -1,0 +1,111 @@
+# Line Drift external watchdog.
+#
+# Why this exists: every alarm the tool can raise is sent BY the laptop. When
+# the laptop is asleep, off, or its scheduled tasks are wedged, it cannot tell
+# anyone - which is exactly when you most need to be told. Claude's cloud
+# cannot reach api.telegram.org either (the egress proxy returns 403).
+#
+# GitHub Actions runs on GitHub's machines with open egress, so it can read the
+# beacon the laptop publishes and text you when that beacon goes stale. It is
+# the only link in the chain that does not depend on the thing being monitored.
+name: Line Drift watchdog
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check the beacon and text Tyler if it is bad
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python3 - <<'PY'
+          import json, os, pathlib, urllib.parse, urllib.request
+          import datetime as dt
+
+          ROOT = pathlib.Path(".")
+          STATE = ROOT / ".watchdog_state.json"
+          now = dt.datetime.now(dt.timezone.utc)
+
+          # Pacific without pytz: PDT is UTC-7 roughly Mar-Nov, PST UTC-8.
+          # Being an hour off only shifts the window edge, never the alarm.
+          pac = now - dt.timedelta(hours=7)
+          in_window = ((pac.weekday() == 4 and pac.hour >= 15)   # Fri 3pm on
+                       or pac.weekday() == 5)                     # all Saturday
+          bar = 45 if in_window else 240                          # minutes
+
+          problems, age = [], None
+          try:
+              b = json.loads((ROOT / "beacon.json").read_text())
+              written = dt.datetime.fromisoformat(b["written"].replace("Z", "+00:00"))
+              age = (now - written).total_seconds() / 60
+              if age > bar:
+                  problems.append(
+                      f"The laptop has not checked in for {age/60:.1f} hours "
+                      f"(limit right now is {bar/60:.1f}h). Nothing is running.")
+              problems += list(b.get("problems") or [])
+              if b.get("on_ac") is False:
+                  problems.append("It is running on BATTERY.")
+              if in_window and (b.get("pick_count") not in (5, None)):
+                  problems.append(
+                      f"Your entry has {b.get('pick_count')} picks, not 5 - "
+                      f"every missing pick is $3 and a lost point.")
+          except Exception as e:
+              problems.append(f"Could not even read the beacon file: {e}")
+
+          if not problems:
+              print("healthy"); raise SystemExit
+
+          sig = "|".join(sorted(problems))
+          try:
+              old = json.loads(STATE.read_text())
+              same = old.get("sig") == sig
+              since = (now - dt.datetime.fromisoformat(old["at"])).total_seconds() / 3600
+              if same and since < 6:
+                  print(f"same problem, told him {since:.1f}h ago - staying quiet")
+                  raise SystemExit
+          except SystemExit:
+              raise
+          except Exception:
+              pass
+
+          body = ["<b>LINE DRIFT IS DOWN</b>", ""]
+          body += [f"- {p}" for p in problems]
+          body += ["", "<b>Do this:</b>",
+                   "1. Plug the laptop in and open the lid.",
+                   "2. Run <code>C:\\Users\\tturk\\Downloads\\line-drift\\scripts\\FIX.bat</code>",
+                   "3. If it opens Chrome, sign in to Splash there, then CLOSE that window.",
+                   "", "Your picks are not being changed while this is broken."]
+          text = "\n".join(body)
+
+          tok, chat = os.environ["TG_TOKEN"], os.environ["TG_CHAT"]
+          data = urllib.parse.urlencode(
+              {"chat_id": chat, "text": text, "parse_mode": "HTML"}).encode()
+          req = urllib.request.Request(
+              f"https://api.telegram.org/bot{tok}/sendMessage", data=data)
+          with urllib.request.urlopen(req, timeout=30) as r:
+              print("telegram:", r.status)
+
+          STATE.write_text(json.dumps({"sig": sig, "at": now.isoformat()}, indent=1))
+          print("alerted")
+          PY
+
+      - name: Remember what we said, so it is not repeated every 30 minutes
+        run: |
+          if [ -n "$(git status --porcelain .watchdog_state.json)" ]; then
+            git config user.name  "line-drift-watchdog"
+            git config user.email "watchdog@users.noreply.github.com"
+            git add .watchdog_state.json
+            git commit -m "watchdog: record alert state"
+            git push
+          fi
