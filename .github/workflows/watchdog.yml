@@ -62,10 +62,6 @@ jobs:
               problems += list(b.get("problems") or [])
               if b.get("on_ac") is False:
                   problems.append("It is running on BATTERY.")
-              if in_window and (b.get("pick_count") not in (5, None)):
-                  problems.append(
-                      f"Your entry has {b.get('pick_count')} picks, not 5 - "
-                      f"every missing pick is $3 and a lost point.")
           except Exception as e:
               problems.append(f"Could not even read the beacon file: {e}")
 
@@ -99,6 +95,28 @@ jobs:
           except Exception:
               pass
 
+          # Match the instructions to what is actually wrong. The old message
+          # told him to plug in and open the lid for every problem - including
+          # an empty entry on a laptop that was already plugged in and open.
+          FIXBAT = r"C:\Users\tturk\Downloads\line-drift\scripts\FIX.bat"
+          def kinds(p):
+              q = p.lower(); k = set()
+              if "has not checked in" in q or "could not even read" in q:
+                  k |= {"down", "power", "fix"}
+              if "battery" in q:
+                  k |= {"power"}
+              if any(w in q for w in ("sign in", "splash login",
+                                      "picksheet last read", "splash session")):
+                  k |= {"down", "fix"}
+              if any(w in q for w in ("not finishing", "never finished", "has not run",
+                                      "missing", "disabled", "no heartbeat",
+                                      "cannot read saved state")):
+                  k |= {"down", "fix"}
+              if "entry" in q and "picks" in q:
+                  k |= {"run"}
+              return k or {"down", "fix"}          # unrecognised: assume the worst
+          need = set().union(*(kinds(p) for p in problems))
+
           if test_only:
               body = ["<b>WATCHDOG TEST - nothing is wrong</b>", "",
                       "This proves alerts reach your phone with your laptop "
@@ -106,13 +124,23 @@ jobs:
                       "get a message headed LINE DRIFT IS DOWN with the steps to "
                       "fix it."]
           else:
-            body = ["<b>LINE DRIFT IS DOWN</b>", ""]
-            body += [f"- {p}" for p in problems]
-            body += ["", "<b>Do this:</b>",
-                   "1. Plug the laptop in and open the lid.",
-                   "2. Run <code>C:\\Users\\tturk\\Downloads\\line-drift\\scripts\\FIX.bat</code>",
-                   "3. If it opens Chrome, sign in to Splash there, then CLOSE that window.",
-                     "", "Your picks are not being changed while this is broken."]
+              head = "LINE DRIFT IS DOWN" if "down" in need else "LINE DRIFT NEEDS YOU"
+              body = [f"<b>{head}</b>", ""] + [f"- {p}" for p in problems]
+              steps = []
+              if "power" in need:
+                  steps.append("Plug the laptop in and open the lid.")
+              if "fix" in need:
+                  steps.append(f"Run <code>{FIXBAT}</code>")
+                  steps.append("In the Chrome window it opens, make sure you are "
+                               "signed in to Splash, then CLOSE that window.")
+              if "run" in need:
+                  steps.append(("Then text" if "fix" in need else "Text")
+                               + " <b>RUN</b> to the bot - it fills your entry "
+                               "and tells you what it picked.")
+              body += ["", "<b>Do this:</b>"]
+              body += [f"{i}. {t}" for i, t in enumerate(steps, 1)]
+              if "down" in need:
+                  body += ["", "Your picks are not being changed while this is broken."]
           text = "\n".join(body)
 
           tok, chat = os.environ["TG_TOKEN"], os.environ["TG_CHAT"]
