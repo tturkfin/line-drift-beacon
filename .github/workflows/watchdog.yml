@@ -36,7 +36,7 @@ jobs:
           TEST: ${{ inputs.test }}
         run: |
           python3 - <<'PY'
-          import json, os, pathlib, urllib.parse, urllib.request
+          import json, os, pathlib, re, urllib.parse, urllib.request
           import datetime as dt
 
           ROOT = pathlib.Path(".")
@@ -74,19 +74,24 @@ jobs:
           # The test toggle forces one message so the whole chain is provable
           # without waiting for a real outage.
           test = os.environ.get("TEST", "false").strip().lower() == "true"
+          test_only = False
           if not problems:
               if not test:
                   print("healthy"); raise SystemExit
-              problems = ["This is a TEST. Nothing is actually wrong - you ran "
-                          "the workflow with the test box ticked, to prove these "
-                          "messages reach you."]
+              problems = ["TEST"]
+          test_only = (problems == ["TEST"])
 
-          sig = "|".join(sorted(problems))
+          # Strip the numbers before comparing. "down 1.5 hours" and "down 2.0
+          # hours" are the same outage - comparing them raw re-sent the alarm on
+          # every 30-minute run. Re-alert sooner inside the window, where an
+          # outage costs money, than midweek.
+          sig = "|".join(sorted(re.sub(r"\d+(?:\.\d+)?", "#", p) for p in problems))
+          repeat_h = 2 if in_window else 6
           try:
               old = json.loads(STATE.read_text())
               same = old.get("sig") == sig
               since = (now - dt.datetime.fromisoformat(old["at"])).total_seconds() / 3600
-              if same and since < 6:
+              if same and since < repeat_h and not test_only:
                   print(f"same problem, told him {since:.1f}h ago - staying quiet")
                   raise SystemExit
           except SystemExit:
@@ -94,13 +99,20 @@ jobs:
           except Exception:
               pass
 
-          body = ["<b>LINE DRIFT IS DOWN</b>", ""]
-          body += [f"- {p}" for p in problems]
-          body += ["", "<b>Do this:</b>",
+          if test_only:
+              body = ["<b>WATCHDOG TEST - nothing is wrong</b>", "",
+                      "This proves alerts reach your phone with your laptop "
+                      "uninvolved. If Line Drift ever actually goes down, you will "
+                      "get a message headed LINE DRIFT IS DOWN with the steps to "
+                      "fix it."]
+          else:
+            body = ["<b>LINE DRIFT IS DOWN</b>", ""]
+            body += [f"- {p}" for p in problems]
+            body += ["", "<b>Do this:</b>",
                    "1. Plug the laptop in and open the lid.",
                    "2. Run <code>C:\\Users\\tturk\\Downloads\\line-drift\\scripts\\FIX.bat</code>",
                    "3. If it opens Chrome, sign in to Splash there, then CLOSE that window.",
-                   "", "Your picks are not being changed while this is broken."]
+                     "", "Your picks are not being changed while this is broken."]
           text = "\n".join(body)
 
           tok, chat = os.environ["TG_TOKEN"], os.environ["TG_CHAT"]
