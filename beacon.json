@@ -1,19 +1,19 @@
 {
- "written": "2026-10-12T17:42:13+00:00",
- "guard_age_min": 110.3,
- "guard_done_min": 1.7,
- "listener_age_min": 1.7,
- "listener_done_min": 0.3,
- "tasks_total": 0,
+ "written": "2026-10-13T05:07:18+00:00",
+ "guard_age_min": 661.6,
+ "guard_done_min": 661.8,
+ "listener_age_min": 0.3,
+ "listener_done_min": 0.1,
+ "tasks_total": 9,
  "tasks_not_ready": [],
  "pick_count": 5,
- "on_ac": false,
+ "on_ac": true,
  "in_window": false,
  "problems": [
-  "guard has not run in 1.8 hours",
-  "scheduled task(s) missing: LineDrift Listener, LineDrift Guard, LineDrift Odds Snapshot, LineDrift Friday Board, LineDrift Tuesday Lock Read, LineDrift Ping Friday, LineDrift Ping Saturday, LineDrift Beacon, LineDrift Stay Awake"
+  "guard has not run in 11.0 hours",
+  "the listener is starting but not finishing: last start 0 min ago, last clean finish 11.0 hours ago - it is crashing mid-cycle"
  ],
  "notes": [
-  "running on BATTERY - plug in before the window, or Windows will suspend the scheduled tasks once the standby drain budget runs out and nothing will run until you open the lid"
+  "picksheet last read 13.3 hours ago"
  ]
 }
