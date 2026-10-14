@@ -1,16 +1,20 @@
 {
- "written": "2026-10-14T04:17:12+00:00",
- "guard_age_min": 14.7,
- "guard_done_min": 0.2,
- "listener_age_min": 0.2,
- "listener_done_min": 0.1,
+ "written": "2026-10-14T20:21:08+00:00",
+ "guard_age_min": 963.7,
+ "guard_done_min": 964.1,
+ "listener_age_min": 0.4,
+ "listener_done_min": 0.3,
  "tasks_total": 9,
  "tasks_not_ready": [],
  "pick_count": 5,
  "on_ac": false,
  "in_window": false,
- "problems": [],
+ "problems": [
+  "guard has not run in 16.1 hours",
+  "the listener is starting but not finishing: last start 0 min ago, last clean finish 16.1 hours ago - it is crashing mid-cycle"
+ ],
  "notes": [
+  "picksheet last read 16.3 hours ago",
   "running on BATTERY - plug in before the window, or Windows will suspend the scheduled tasks once the standby drain budget runs out and nothing will run until you open the lid"
  ]
 }
