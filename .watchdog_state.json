@@ -1,4 +1,4 @@
 {
- "sig": "It is running on BATTERY.",
- "at": "2026-10-14T05:58:50.896640+00:00"
+ "sig": "It is running on BATTERY.|The laptop has not checked in for # hours (limit right now is #h). Nothing is running.",
+ "at": "2026-10-14T11:42:40.795109+00:00"
 }
