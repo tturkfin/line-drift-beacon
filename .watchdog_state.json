@@ -1,4 +1,4 @@
 {
- "sig": "It is running on BATTERY.|The laptop has not checked in for # hours (limit right now is #h). Nothing is running.",
- "at": "2026-10-14T11:42:40.795109+00:00"
+ "sig": "It is running on BATTERY.|guard has not run in # hours|the listener is starting but not finishing: last start # min ago, last clean finish # hours ago - it is crashing mid-cycle",
+ "at": "2026-10-14T20:36:02.407981+00:00"
 }
