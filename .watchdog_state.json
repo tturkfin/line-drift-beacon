@@ -1,4 +1,4 @@
 {
- "sig": "It is running on BATTERY.|The laptop has not checked in for # hours (limit right now is #h). Nothing is running.|guard has not run in # hours|scheduled task(s) missing: LineDrift Listener, LineDrift Guard, LineDrift Odds Snapshot, LineDrift Friday Board, LineDrift Tuesday Lock Read, LineDrift Ping Friday, LineDrift Ping Saturday, LineDrift Beacon, LineDrift Stay Awake",
- "at": "2026-10-13T01:14:05.659546+00:00"
+ "sig": "It is running on BATTERY.",
+ "at": "2026-10-14T05:58:50.896640+00:00"
 }
