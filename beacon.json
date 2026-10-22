@@ -1,16 +1,15 @@
 {
- "written": "2026-10-22T14:02:38+00:00",
- "guard_age_min": 8520.3,
- "guard_done_min": 8520.6,
- "listener_age_min": 0.3,
- "listener_done_min": 0.2,
+ "written": "2026-10-22T14:17:06+00:00",
+ "guard_age_min": 12.8,
+ "guard_done_min": 12.8,
+ "listener_age_min": 0.0,
+ "listener_done_min": 2.1,
  "tasks_total": 9,
  "tasks_not_ready": [],
  "pick_count": 5,
  "on_ac": true,
  "in_window": false,
  "problems": [
-  "guard has not run in 142.0 hours",
   "picksheet last read 143 hours ago - the Splash session may have expired"
  ],
  "notes": []
