@@ -1,16 +1,16 @@
 {
- "written": "2026-10-22T14:17:06+00:00",
- "guard_age_min": 12.8,
- "guard_done_min": 12.8,
+ "written": "2026-10-22T14:21:02+00:00",
+ "guard_age_min": 1.6,
+ "guard_done_min": 16.7,
  "listener_age_min": 0.0,
- "listener_done_min": 2.1,
+ "listener_done_min": 1.8,
  "tasks_total": 9,
  "tasks_not_ready": [],
- "pick_count": 5,
+ "pick_count": 0,
  "on_ac": true,
  "in_window": false,
  "problems": [
-  "picksheet last read 143 hours ago - the Splash session may have expired"
+  "entry has 0 picks, expected 5, and the first game locks in 9h - text RUN to the bot to fill it now"
  ],
  "notes": []
 }
