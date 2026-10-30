@@ -1,4 +1,4 @@
 {
- "sig": "guard has not run in # hours|picksheet last read # hours ago - the Splash session may have expired",
- "at": "2026-10-30T15:15:13.880028+00:00"
+ "sig": "The laptop has not checked in for # hours (limit right now is #h). Nothing is running.",
+ "at": "2026-10-30T23:59:08.710074+00:00"
 }
