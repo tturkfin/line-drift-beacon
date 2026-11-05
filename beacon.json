@@ -1,7 +1,7 @@
 {
- "written": "2026-11-05T15:17:05+00:00",
- "guard_age_min": 15.0,
- "guard_done_min": 0.1,
+ "written": "2026-11-05T15:57:05+00:00",
+ "guard_age_min": 9.7,
+ "guard_done_min": 9.7,
  "listener_age_min": 0.1,
  "listener_done_min": 0.1,
  "tasks_total": 9,
@@ -11,6 +11,6 @@
  "in_window": false,
  "problems": [],
  "notes": [
-  "Splash login expires in 4.0 days"
+  "Splash login expires in 3.9 days"
  ]
 }
