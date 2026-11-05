@@ -1,17 +1,20 @@
 {
- "written": "2026-11-04T21:59:18+00:00",
- "guard_age_min": 71.3,
- "guard_done_min": 900.3,
+ "written": "2026-11-05T14:11:31+00:00",
+ "guard_age_min": 969.3,
+ "guard_done_min": 969.5,
  "listener_age_min": 0.2,
- "listener_done_min": 0.1,
+ "listener_done_min": 0.2,
  "tasks_total": 9,
  "tasks_not_ready": [],
  "pick_count": 5,
  "on_ac": false,
  "in_window": false,
- "problems": [],
+ "problems": [
+  "guard has not run in 16.2 hours"
+ ],
  "notes": [
-  "guard last ran 71 min ago (expected within ~15)",
+  "picksheet last read 16.2 hours ago",
+  "Splash login expires in 4.0 days",
   "running on BATTERY - plug in before the window, or Windows will suspend the scheduled tasks once the standby drain budget runs out and nothing will run until you open the lid"
  ]
 }
