@@ -1,14 +1,16 @@
 {
- "written": "2026-11-10T03:57:05+00:00",
- "guard_age_min": 10.0,
- "guard_done_min": 10.1,
- "listener_age_min": 0.1,
- "listener_done_min": 2.1,
+ "written": "2026-11-10T04:37:12+00:00",
+ "guard_age_min": 4.5,
+ "guard_done_min": 4.7,
+ "listener_age_min": 0.2,
+ "listener_done_min": 0.2,
  "tasks_total": 9,
  "tasks_not_ready": [],
  "pick_count": 5,
- "on_ac": true,
+ "on_ac": false,
  "in_window": false,
  "problems": [],
- "notes": []
+ "notes": [
+  "running on BATTERY - plug in before the window, or Windows will suspend the scheduled tasks once the standby drain budget runs out and nothing will run until you open the lid"
+ ]
 }
