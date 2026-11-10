@@ -1,17 +1,20 @@
 {
- "written": "2026-11-09T13:03:53+00:00",
- "guard_age_min": 691.6,
- "guard_done_min": 691.8,
+ "written": "2026-11-10T03:23:47+00:00",
+ "guard_age_min": 858.1,
+ "guard_done_min": 857.2,
  "listener_age_min": 0.2,
- "listener_done_min": 0.1,
+ "listener_done_min": 848.7,
  "tasks_total": 9,
  "tasks_not_ready": [],
  "pick_count": 0,
  "on_ac": true,
  "in_window": false,
  "problems": [
-  "guard has not run in 11.5 hours",
-  "the listener is starting but not finishing: last start 0 min ago, last clean finish 11.4 hours ago - it is crashing mid-cycle"
+  "guard has not run in 14.3 hours",
+  "the listener is starting but not finishing: last start 0 min ago, last clean finish 14.1 hours ago - it is crashing mid-cycle",
+  "entry has 0 picks, expected 5, and the first game locks in 21h - text RUN to the bot to fill it now"
  ],
- "notes": []
+ "notes": [
+  "picksheet last read 14.3 hours ago"
+ ]
 }
