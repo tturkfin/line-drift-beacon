@@ -1,16 +1,14 @@
 {
- "written": "2026-11-13T17:56:37+00:00",
- "guard_age_min": 23.7,
- "guard_done_min": 3780.0,
- "listener_age_min": 3780.0,
- "listener_done_min": 3780.0,
- "tasks_total": 0,
+ "written": "2026-11-13T18:37:05+00:00",
+ "guard_age_min": 5.0,
+ "guard_done_min": 5.0,
+ "listener_age_min": 0.1,
+ "listener_done_min": 0.1,
+ "tasks_total": 9,
  "tasks_not_ready": [],
  "pick_count": 5,
  "on_ac": true,
  "in_window": false,
- "problems": [
-  "scheduled task(s) missing: LineDrift Listener, LineDrift Guard, LineDrift Odds Snapshot, LineDrift Friday Board, LineDrift Tuesday Lock Read, LineDrift Ping Friday, LineDrift Ping Saturday, LineDrift Beacon, LineDrift Stay Awake"
- ],
+ "problems": [],
  "notes": []
 }
