@@ -1,18 +1,15 @@
 {
- "written": "2026-11-16T20:53:00+00:00",
- "guard_age_min": 111.6,
- "guard_done_min": 140.0,
- "listener_age_min": 0.4,
- "listener_done_min": 0.0,
+ "written": "2026-11-17T01:15:05+00:00",
+ "guard_age_min": 10.5,
+ "guard_done_min": 110.6,
+ "listener_age_min": 2.1,
+ "listener_done_min": 110.6,
  "tasks_total": 9,
  "tasks_not_ready": [],
- "pick_count": 0,
+ "pick_count": 5,
  "on_ac": false,
  "in_window": false,
- "problems": [
-  "guard has not run in 1.9 hours",
-  "entry has 0 picks, expected 5, and the first game locks in 26h - text RUN to the bot to fill it now"
- ],
+ "problems": [],
  "notes": [
   "running on BATTERY - plug in before the window, or Windows will suspend the scheduled tasks once the standby drain budget runs out and nothing will run until you open the lid"
  ]
