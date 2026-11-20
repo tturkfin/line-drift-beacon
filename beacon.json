@@ -1,15 +1,17 @@
 {
- "written": "2026-11-20T05:37:02+00:00",
- "guard_age_min": 4.8,
- "guard_done_min": 4.8,
- "listener_age_min": 0.0,
- "listener_done_min": 2.0,
+ "written": "2026-11-20T09:35:25+00:00",
+ "guard_age_min": 108.1,
+ "guard_done_min": 108.4,
+ "listener_age_min": 0.3,
+ "listener_done_min": 0.3,
  "tasks_total": 9,
  "tasks_not_ready": [],
  "pick_count": 5,
  "on_ac": false,
  "in_window": false,
- "problems": [],
+ "problems": [
+  "guard has not run in 1.8 hours"
+ ],
  "notes": [
   "running on BATTERY - plug in before the window, or Windows will suspend the scheduled tasks once the standby drain budget runs out and nothing will run until you open the lid"
  ]
