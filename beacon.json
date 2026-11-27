@@ -1,14 +1,16 @@
 {
- "written": "2026-11-27T16:57:04+00:00",
- "guard_age_min": 9.9,
- "guard_done_min": 9.9,
- "listener_age_min": 0.1,
- "listener_done_min": 0.0,
+ "written": "2026-11-27T19:23:41+00:00",
+ "guard_age_min": 126.4,
+ "guard_done_min": 126.6,
+ "listener_age_min": 0.3,
+ "listener_done_min": 0.2,
  "tasks_total": 9,
  "tasks_not_ready": [],
  "pick_count": 5,
  "on_ac": true,
  "in_window": false,
- "problems": [],
+ "problems": [
+  "guard has not run in 2.1 hours"
+ ],
  "notes": []
 }
